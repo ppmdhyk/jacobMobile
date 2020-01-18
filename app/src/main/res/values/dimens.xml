@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="mid_150">150dp</dimen>
+    <dimen name="normalmargin">20dp</dimen>
+    <dimen name="bodyfontsize">14sp</dimen>
+    <dimen name="titlefontsize">20sp</dimen>
+</resources>

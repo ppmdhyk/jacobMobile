@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorWhiteSolid">
+
+
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/icon_compl"
+        android:layout_gravity="center"
+        android:padding="5dp"
+        android:layout_marginTop="150dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="JACOB"
+        android:textColor="@color/colorBlackSolid"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:textStyle="bold"
+        android:textSize="@dimen/titlefontsize"
+        android:layout_marginTop="20dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:padding="5dp"
+        android:text="JTI Complaint and Compliment Box. Convey your criticisms and suggestions here."
+        android:textColor="@color/colorBlackSolid"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserrat_thin"
+        android:textStyle="bold"
+        android:textSize="@dimen/bodyfontsize"
+        />
+
+    <Button
+        android:id="@+id/btnstart"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="100dp"
+        android:background="@color/colorBlueBody"
+        android:fontFamily="@font/montserrat_semi_bold"
+        android:text="s t a r t"
+        android:textSize="@dimen/bodyfontsize" />
+
+</LinearLayout>
