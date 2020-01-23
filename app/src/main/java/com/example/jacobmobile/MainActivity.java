@@ -10,6 +10,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.jacobmobile.model.PostSaran;
+import com.example.jacobmobile.rest.ApiClient;
+import com.example.jacobmobile.rest.ApiInterface;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.safetynet.SafetyNet;
@@ -17,6 +20,9 @@ import com.google.android.gms.safetynet.SafetyNetApi;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -25,11 +31,13 @@ public class MainActivity extends AppCompatActivity {
     EditText input;
     String text;
     String YOUR_API_SITE_KEY="6Lcsk9AUAAAAANpYKV0Nq9P6H0He3LpGgG9vlBBb";
+    ApiInterface mApiInterface;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_input);
 
+        mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         input=findViewById(R.id.edtinputtxt);
         submit = findViewById(R.id.btnsubmit);
         submit.setOnClickListener(new View.OnClickListener() {
@@ -38,6 +46,20 @@ public class MainActivity extends AppCompatActivity {
                 text=input.getText().toString();
                 getCaptcha();
                // Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
+                Call<PostSaran> postSaranCall = mApiInterface.saran(text);
+                postSaranCall.enqueue(new Callback<PostSaran>() {
+                    @Override
+                    public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
+                        Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<PostSaran> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Submit Error", Toast.LENGTH_LONG).show();
+                    }
+                });
+
                 finish();
 
             }
