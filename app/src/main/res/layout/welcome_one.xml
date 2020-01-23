@@ -6,9 +6,9 @@
 
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/icon_compl"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:src="@drawable/logo_box"
         android:layout_gravity="center"
         android:padding="5dp"
         android:layout_marginTop="150dp"
@@ -34,10 +34,10 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:padding="5dp"
-        android:text="JTI Complaint and Compliment Box. Convey your criticisms and suggestions here."
+        android:text="JTI Complaint and Compliment Box"
         android:textColor="@color/colorBlackSolid"
         android:textAlignment="center"
-        android:fontFamily="@font/montserrat_thin"
+        android:fontFamily="@font/hansville_bold"
         android:textStyle="bold"
         android:textSize="@dimen/bodyfontsize"
         />

@@ -1,14 +1,15 @@
 package com.example.jacobmobile;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.jacobmobile.model.PostSaran;
 import com.example.jacobmobile.rest.ApiClient;
@@ -28,6 +29,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     Button submit;
+    ImageView back;
     EditText input;
     String text;
     String YOUR_API_SITE_KEY="6Lcsk9AUAAAAANpYKV0Nq9P6H0He3LpGgG9vlBBb";
@@ -39,6 +41,14 @@ public class MainActivity extends AppCompatActivity {
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
         input=findViewById(R.id.edtinputtxt);
+        back=findViewById(R.id.btnback);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         submit = findViewById(R.id.btnsubmit);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,12 +56,21 @@ public class MainActivity extends AppCompatActivity {
                 text=input.getText().toString();
                 getCaptcha();
                // Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
-                Call<PostSaran> postSaranCall = mApiInterface.saran(text);
+                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(text);
                 postSaranCall.enqueue(new Callback<PostSaran>() {
                     @Override
                     public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
-                        Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
-                        finish();
+                        if(response.isSuccessful()){
+                            Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
+                            finish();
+
+                        }else{
+                            Toast.makeText(getApplicationContext(),"Submit Unsuccessfully",Toast.LENGTH_LONG).show();
+                            finish();
+
+                        }
+
+
                     }
 
                     @Override

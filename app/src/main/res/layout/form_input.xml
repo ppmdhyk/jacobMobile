@@ -4,16 +4,25 @@
     android:layout_height="match_parent"
     android:background="@color/colorBlueBody">
 
+
+    <ImageView
+        android:id="@+id/btnback"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/back"
+        android:layout_marginTop="@dimen/normalmargin"
+        android:layout_marginLeft="@dimen/normalmargin"
+        />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:text="Please enter your criticisms and suggestions below."
-        android:fontFamily="@font/montserrat_thin"
+        android:fontFamily="@font/hansville_bold"
         android:textSize="@dimen/bodyfontsize"
         android:textStyle="bold"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="50dp"
         />
     <TextView
         android:layout_width="match_parent"
@@ -21,7 +30,7 @@
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
         android:text="Convey in a polite manner."
-        android:fontFamily="@font/montserrat_thin"
+        android:fontFamily="@font/hansville_bold"
         android:textSize="@dimen/bodyfontsize"
         android:textStyle="bold"
         />
@@ -40,7 +49,7 @@
         android:layout_marginTop="10dp"
         android:background="@color/colorWhiteSolid"
         android:textColor="@color/colorBlackSolid"
-        android:fontFamily="@font/montserrat_light"
+        android:fontFamily="@font/hansville_bold"
         android:textStyle="bold"/>
 
     <Button
@@ -50,7 +59,7 @@
         android:layout_marginRight="50dp"
         android:layout_marginLeft="50dp"
         android:text="s u b m i t"
-        android:fontFamily="@font/montserrat_semi_bold"
+        android:fontFamily="@font/hansville_bold"
         android:background="@color/colorGrey"
         android:textColor="@color/colorBlackSolid"
         android:layout_marginTop="10dp"
