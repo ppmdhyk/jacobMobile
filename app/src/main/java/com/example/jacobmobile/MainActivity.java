@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.jacobmobile.model.PostSaran;
+import com.example.jacobmobile.model.Saran;
 import com.example.jacobmobile.rest.ApiClient;
 import com.example.jacobmobile.rest.ApiInterface;
 import com.google.android.gms.common.api.ApiException;
@@ -20,6 +21,8 @@ import com.google.android.gms.safetynet.SafetyNet;
 import com.google.android.gms.safetynet.SafetyNetApi;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,17 +34,34 @@ public class MainActivity extends AppCompatActivity {
     Button submit;
     ImageView back;
     EditText input;
-    String text;
     String YOUR_API_SITE_KEY="6Lcsk9AUAAAAANpYKV0Nq9P6H0He3LpGgG9vlBBb";
     ApiInterface mApiInterface;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.form_input);
 
         mApiInterface = ApiClient.getClient().create(ApiInterface.class);
-        input=findViewById(R.id.edtinputtxt);
+        input = findViewById(R.id.edtinputtxt);
         back=findViewById(R.id.btnback);
+
+        Call<PostSaran> getSaran = mApiInterface.ambilsaran();
+        getSaran.enqueue(new Callback<PostSaran>() {
+            @Override
+            public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
+                List<Saran> saran= response.body().getmSaran();
+                for (int i=0; i<saran.size(); i++) {
+                    Log.w("Saran ke "+i, saran.get(i).getSaran());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<PostSaran> call, Throwable t) {
+                Log.e("debug", "onFailure: ERROR > " + t.toString());
+            }
+        });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,10 +73,9 @@ public class MainActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                text=input.getText().toString();
                 getCaptcha();
                // Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
-                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(text);
+                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(input.getText().toString(), "Laporan Baru", "Biasa", "Coba");
                 postSaranCall.enqueue(new Callback<PostSaran>() {
                     @Override
                     public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
@@ -67,10 +86,7 @@ public class MainActivity extends AppCompatActivity {
                         }else{
                             Toast.makeText(getApplicationContext(),"Submit Unsuccessfully",Toast.LENGTH_LONG).show();
                             finish();
-
                         }
-
-
                     }
 
                     @Override
@@ -99,7 +115,7 @@ public class MainActivity extends AppCompatActivity {
                                 if (!userResponseToken.isEmpty()) {
                                     // Validate the user response token using the
                                     // reCAPTCHA siteverify API.
-                                    Toast.makeText(getApplicationContext(),text,Toast.LENGTH_LONG).show();
+                                    Toast.makeText(getApplicationContext(),input.getText().toString(),Toast.LENGTH_LONG).show();
                                 }
                             }
                         })
