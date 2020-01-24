@@ -12,6 +12,6 @@ public interface ApiInterface {
 
     @FormUrlEncoded
     @POST("inputsaran")
-    Call<PostSaran> inputsaran(@Field("saran") String saran);
+    Call<PostSaran> inputsaran(@Field("saran") String saran,@Field("topik") String topik,@Field("urgensi") String urgensi,@Field("sentimen") String sentimen);
 
 }

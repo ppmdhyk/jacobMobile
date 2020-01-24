@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 getCaptcha();
                // Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
-                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(input.getText().toString());
+                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(input.getText().toString(),"","","");
                 postSaranCall.enqueue(new Callback<PostSaran>() {
                     @Override
                     public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
