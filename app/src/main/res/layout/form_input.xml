@@ -50,7 +50,8 @@
         android:background="@color/colorWhiteSolid"
         android:textColor="@color/colorBlackSolid"
         android:fontFamily="@font/hansville_bold"
-        android:textStyle="bold"/>
+        android:textStyle="bold"
+        android:gravity="top"/>
 
     <Button
         android:id="@+id/btnsubmit"

@@ -28,6 +28,7 @@
         android:layout_marginTop="20dp"
         />
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -41,7 +42,19 @@
         android:textStyle="bold"
         android:textSize="@dimen/bodyfontsize"
         />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:text="(beta version)"
+        android:textColor="@color/colorBlackSolid"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserrat_thin"
+        android:textStyle="bold"
+        android:textSize="10sp"
+        android:layout_marginTop="0dp"
+        />
     <Button
         android:id="@+id/btnstart"
         android:layout_width="match_parent"

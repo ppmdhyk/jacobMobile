@@ -66,7 +66,6 @@ public class MainActivity extends AppCompatActivity {
                         if(response.isSuccessful()){
                             showDialogOk();
                             Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
-                            finish();
 
                         }else{
                             Toast.makeText(getApplicationContext(),"Submit Unsuccessfully",Toast.LENGTH_LONG).show();
@@ -80,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                finish();
+
 
             }
         });
@@ -128,16 +127,17 @@ public class MainActivity extends AppCompatActivity {
                 MainActivity.this);
 
         // set title dialog
-        alertDialogBuilder.setTitle("Konfirmasi");
+        alertDialogBuilder.setTitle("JACOB");
 
         // set pesan dari dialog
         alertDialogBuilder
-                .setMessage("Thank you, your complain or compliment submitted.")
+                .setMessage("Thank you! Your complain or compliment submitted.")
                 .setIcon(R.drawable.logo_box)
                 .setCancelable(false)
                 .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog,int id) {
                         // jika tombol diklik, maka akan menutup activity ini
+                        finish();
                         dialog.cancel();
                     }
 
