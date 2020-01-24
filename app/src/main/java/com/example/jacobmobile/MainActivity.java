@@ -1,5 +1,7 @@
 package com.example.jacobmobile;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -43,22 +45,6 @@ public class MainActivity extends AppCompatActivity {
         input = findViewById(R.id.edtinputtxt);
         back=findViewById(R.id.btnback);
 
-//        Call<PostSaran> getSaran = mApiInterface.ambilsaran();
-//        getSaran.enqueue(new Callback<PostSaran>() {
-//            @Override
-//            public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
-//                List<Saran> saran= response.body().getmSaran();
-//                for (int i=0; i<saran.size(); i++) {
-//                    Log.w("Saran ke "+i, saran.get(i).getSaran());
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<PostSaran> call, Throwable t) {
-//                Log.e("debug", "onFailure: ERROR > " + t.toString());
-//            }
-//        });
-
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,12 +57,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 getCaptcha();
-               // Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
-                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(input.getText().toString(),"","","");
+
+                Call<PostSaran> postSaranCall = mApiInterface.inputsaran(input.getText().toString(),"", "","");
+
                 postSaranCall.enqueue(new Callback<PostSaran>() {
                     @Override
                     public void onResponse(Call<PostSaran> call, Response<PostSaran> response) {
                         if(response.isSuccessful()){
+                            showDialogOk();
                             Toast.makeText(getApplicationContext(),"Submit Successfully",Toast.LENGTH_LONG).show();
                             finish();
 
@@ -133,6 +121,33 @@ public class MainActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void showDialogOk(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                MainActivity.this);
+
+        // set title dialog
+        alertDialogBuilder.setTitle("Konfirmasi");
+
+        // set pesan dari dialog
+        alertDialogBuilder
+                .setMessage("Thank you, your complain or compliment submitted.")
+                .setIcon(R.drawable.logo_box)
+                .setCancelable(false)
+                .setPositiveButton("Ok",new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog,int id) {
+                        // jika tombol diklik, maka akan menutup activity ini
+                        dialog.cancel();
+                    }
+
+        });
+
+        // membuat alert dialog dari builder
+        AlertDialog alertDialog = alertDialogBuilder.create();
+
+        // menampilkan alert dialog
+        alertDialog.show();
     }
 
 }
